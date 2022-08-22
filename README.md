@@ -1,5 +1,16 @@
 # HTTP 1.1 server
 
+Task: Implement a basic HTTP server that supports HTTP/1.1 in C++.
+
+Requirements:
+
+Run on Linux
+Do not use any third party networking library, i.e. use only Linux system API.
+Handle at least 10,000 concurrent connections.
+Serve at least 100,000 requests per second on a modern personal computer.
+Serve a simple one or two pages website for demonstration.
+You may want to skip some trivial features like Multipart data if time is not enough, but you need to state clearly what features are supported.
+
 ## Features
 - HTTP 1.1 server
 - Able to handle up to 10k concurrent connections
@@ -47,7 +58,7 @@ curl --header 'Content-Type: application/json' --request POST --data '{ "number"
 ```
 ## Benchmarking
 
-Benchmarked using wrk tool
+Benchmarked using wrk tool on linux (WSL) environment
 
 ### Results with single-threaded
 
