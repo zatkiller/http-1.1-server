@@ -11,10 +11,24 @@ Implement a basic HTTP server that supports HTTP/1.1 in C++.
 - Serve a simple one or two pages website for demonstration.
 - You may want to skip some trivial features like Multipart data if time is not enough, but you need to state clearly what features are supported.
 
+## Repository structure
+
 ## Design
 - Proactor design pattern
 - 1 Listener thread with busy poll accept to accept incoming client connections
 - 5 Worker threads with epoll loops to process requests and responses
+
+The initial design of the HTTP server used the Reactor Pattern. The reactor design pattern is an event handling pattern for handling service requests delivered concurrently to a service handler by one or more inputs. The service handler then demultiplexes the incoming requests and dispatches them synchronously to the associated request handlers. 
+
+During the initial benchmarking with the Reactor Pattern, the HTTP server could support the 10k concurrent client connections but could not support the 100k requests/s throughput requirement, only achieving 40-50k requets/s. This is likely due to the server running the request handlers synchronously and as a result, computational heavy requests slow down the total throughput of the server.
+
+To increase the throughput of the server, I decided to switch to a Proactor pattern that is essentially an asynchronous variant of the Reactor pattern. It is also adopted by Boost Asio. It dispatches request handlers asynchronously to a worker thread without blocking the event loop, increasing the throughput of the HTTP server. With the Proactor Pattern, the HTTP server was able to support > 100k requests per second.
+
+
+References:
+Reactor Pattern: https://en.wikipedia.org/wiki/Reactor_pattern
+Proactor Pattern: https://en.wikipedia.org/wiki/Proactor_pattern
+
 
 ## Build and run server
 1. `cd` into project root folder
