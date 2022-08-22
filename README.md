@@ -1,9 +1,23 @@
 # HTTP 1.1 server
 
+## Contents
+
+* [HTTP 1.1 server](#http-11-server)
+  * [Task](#task)
+    * [Requirements](#task-requirements)
+  * [Repository Structure](#repository-structure)
+  * [Design](#design)
+  * [Setup](#setup)
+      * [Prerequisites](#pre-requisites)
+      * [Build and run server](#build-and-run-server)
+  * [Testing](#testing)
+      * [Curl command](#curl-commands)
+      * [Benmarking performance](#benchmarking)
+
 ## Task
 Implement a basic HTTP server that supports HTTP/1.1 in C++.
 
-## Requirement
+### Task Requirements
 - Run on Linux
 - Do not use any third party networking library, i.e. use only Linux system API.
 - Handle at least 10,000 concurrent connections.
@@ -11,7 +25,7 @@ Implement a basic HTTP server that supports HTTP/1.1 in C++.
 - Serve a simple one or two pages website for demonstration.
 - You may want to skip some trivial features like Multipart data if time is not enough, but you need to state clearly what features are supported.
 
-## Repository structure
+## Repository Structure
 
 ## Design
 - Proactor design pattern
@@ -30,34 +44,40 @@ To increase the throughput of the server, I decided to switch to a Proactor patt
 - Proactor Pattern: https://en.wikipedia.org/wiki/Proactor_pattern
 
 
-## Build and run server
+## Setup
+
+### Prerequisites
+
+### Build and run server
 1. `cd` into project root folder
 2. Run `mkdir build` to create build directory 
 3. Run `cd build && cmake .. && make -j4` to build executable using cmake under `build` dir
 4. Run the executable using the command `./http_server`
 
-## CURL commands
+## Testing
+
+### CURL commands
 
 The following CURL commands can be run to test the HTTP Endpoints
 
-### GET
+#### GET
 ```
 curl "localhost:8080"
 curl "localhost:8080/hello"
 ```
 
-### POST
+#### POST
 
 ```
 curl --header 'Content-Type: application/json' --request POST --data '{ "username": "zatkiller", "password": "123456" }' 'localhost:8080/echo?param1=xyz&param2=def'
 curl --header 'Content-Type: application/json' --request POST --data '{ "number": "123" }' 'localhost:8080/fibonacci'
 ```
 
-## Benchmarking
+### Benchmarking
 
 Benchmarked using wrk tool on linux (WSL) environment
 
-### Results with single-threaded
+#### Results with single-threaded
 
 ```
 wrk -t5 -c10000 -d5s --latency http://localhost:8080/hello
@@ -78,7 +98,7 @@ Requests/sec:  45446.37
 Transfer/sec:      2.21MB
 ```
 
-### Results with thread pool (5 workers + main thread busy-polling `accept(...)`)
+#### Results with thread pool (5 workers + main thread busy-polling `accept(...)`)
 
 ```
 wrk -t5 -c10000 -d5s --latency http://localhost:8080/hello
