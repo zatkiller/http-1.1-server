@@ -1,8 +1,9 @@
 # HTTP 1.1 server
 
-Task: Implement a basic HTTP server that supports HTTP/1.1 in C++.
+## Task
+Implement a basic HTTP server that supports HTTP/1.1 in C++.
 
-Requirements:
+## Requirement
 - Run on Linux
 - Do not use any third party networking library, i.e. use only Linux system API.
 - Handle at least 10,000 concurrent connections.
@@ -16,40 +17,28 @@ Requirements:
 - 5 Worker threads with epoll loops to process requests and responses
 
 ## Build and run server
-
-Create build directory
-
-```
-mkdir build
-```
-
-Build with cmake
-
-```
-cd build && cmake .. && make -j4
-```
-
-Running server
-
-```
-./http_server
-```
+1. `cd` into project root folder
+2. Run `mkdir build` to create build directory 
+3. Run `cd build && cmake .. && make -j4` to build executable using cmake under `build` dir
+4. Run the executable using the command `./http_server`
 
 ## CURL commands
 
-GET
+The following CURL commands can be run to test the HTTP Endpoints
 
+### GET
 ```
 curl "localhost:8080"
 curl "localhost:8080/hello"
 ```
 
-POST
+### POST
 
 ```
 curl --header 'Content-Type: application/json' --request POST --data '{ "username": "zatkiller", "password": "123456" }' 'localhost:8080/echo?param1=xyz&param2=def'
 curl --header 'Content-Type: application/json' --request POST --data '{ "number": "123" }' 'localhost:8080/fibonacci'
 ```
+
 ## Benchmarking
 
 Benchmarked using wrk tool on linux (WSL) environment
