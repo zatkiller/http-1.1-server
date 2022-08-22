@@ -5,10 +5,11 @@
 * [HTTP 1.1 server](#http-11-server)
   * [Task](#task)
     * [Requirements](#task-requirements)
+    * [Supported Features](#supported-features)
   * [Repository Structure](#repository-structure)
   * [Design](#design)
   * [Setup](#setup)
-      * [Prerequisites](#pre-requisites)
+      * [Prerequisites](#prerequisites)
       * [Build and run server](#build-and-run-server)
   * [Testing](#testing)
       * [Curl command](#curl-commands)
@@ -25,7 +26,25 @@ Implement a basic HTTP server that supports HTTP/1.1 in C++.
 - Serve a simple one or two pages website for demonstration.
 - You may want to skip some trivial features like Multipart data if time is not enough, but you need to state clearly what features are supported.
 
+### Supported Features
+- GET requests
+- POST requests
+
 ## Repository Structure
+- `event_data`
+  - contains the `EventData` class which is contains the `Request` and `Response` associated with the event.
+- `event_loop`
+  - contains the `EventLoop` which is responsible for accepting new client connections and dispatching the request handlers on worker threads
+- `http_message`
+  - contains the `HttpRequest`, `HttpResponse` classes and other helper enums that is used to represent the HTTP requests and responses
+- `http_resource`
+  - contains the `HttpResource` class which stores the route handlers
+- `http_server`
+  - contains the `HttpServer` class which inherits from the EventHandler parent class to handle events
+- `main`
+  - Main program where the `HttpServer` and endpoints are initialized
+- `utils`
+  - Helper functions for string parsing and logging
 
 ## Design
 - Proactor design pattern
@@ -50,7 +69,7 @@ To increase the throughput of the server, I decided to switch to a Proactor patt
 To set up this repository, you will need:
 - `cmake` with version `3.23` or higher
 - Compiler that supports `C++17
-- `nlohmann/json` which is used to for JSON parsing. 
+- `nlohmann/json` which is used to for JSON parsing. It is already inlcuded under the `include` directory, but can be reinstalled using `wget https://github.com/nlohmann/json/releases/download/v3.9.1/json.hpp -P include/nlohmann/`
 
 ### Build and run server
 1. `cd` into project root folder
