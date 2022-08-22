@@ -47,6 +47,10 @@ To increase the throughput of the server, I decided to switch to a Proactor patt
 ## Setup
 
 ### Prerequisites
+To set up this repository, you will need:
+- `cmake` with version `3.23` or higher
+- Compiler that supports `C++17
+- `nlohmann/json` which is used to for JSON parsing. 
 
 ### Build and run server
 1. `cd` into project root folder
