@@ -22,7 +22,7 @@ The initial design of the HTTP server used the Reactor Pattern. The reactor desi
 
 During the initial benchmarking with the Reactor Pattern, the HTTP server could support the 10k concurrent client connections but could not support the 100k requests/s throughput requirement, only achieving 40-50k requets/s. This is likely due to the server running the request handlers synchronously and as a result, computational heavy requests slow down the total throughput of the server.
 
-To increase the throughput of the server, I decided to switch to a Proactor pattern that is essentially an asynchronous variant of the Reactor pattern. It is also adopted by Boost Asio. It dispatches request handlers asynchronously to a worker thread without blocking the event loop, increasing the throughput of the HTTP server. With the Proactor Pattern, the HTTP server was able to support > 100k requests per second.
+To increase the throughput of the server, I decided to switch to a Proactor pattern that is essentially an asynchronous variant of the Reactor pattern. It is also adopted by Boost Asio. It dispatches request handlers asynchronously on a worker thread without blocking the event loop, increasing the throughput of the HTTP server. With the Proactor Pattern, the HTTP server was able to support > 100k requests per second.
 
 
 ### References:
