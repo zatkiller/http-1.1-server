@@ -27,8 +27,14 @@ Implement a basic HTTP server that supports HTTP/1.1 in C++.
 - You may want to skip some trivial features like Multipart data if time is not enough, but you need to state clearly what features are supported.
 
 ### Supported Features
-- GET requests
-- POST requests
+- GET requests to the following endpoints
+ - `/`
+ - `/hello`
+ - `/echo`
+ - `/fibonacci`
+- POST requests to the following endpoints
+ - `/echo`
+ - `/fibonacci`
 
 ## Repository Structure
 - `event_data`
