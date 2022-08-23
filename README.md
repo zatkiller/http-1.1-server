@@ -27,14 +27,14 @@ Implement a basic HTTP server that supports HTTP/1.1 in C++.
 - You may want to skip some trivial features like Multipart data if time is not enough, but you need to state clearly what features are supported.
 
 ### Supported Features
-- GET requests to the following endpoints
- - `/`
- - `/hello`
- - `/echo`
- - `/fibonacci`
-- POST requests to the following endpoints
- - `/echo`
- - `/fibonacci`
+- HTTP/1.1 GET requests to the following endpoints
+  - `/` - returns a dummy web page
+  - `/hello` - returns hello world as response body
+  - `/echo`- returns response containing the request query parameters data
+  - `/fibonacci` - returns the response of the fibonacci seqeuence using the number in the request query parameter
+- HTTP/1.1 POST requests to the following endpoints
+  - `/echo`- returns response containing the request body data
+  - `/fibonacci` - returns the response of the fibonacci seqeuence using the number in the request body
 
 ## Repository Structure
 - `event_data`
