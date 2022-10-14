@@ -4,7 +4,6 @@
 
 * [HTTP 1.1 server](#http-11-server)
   * [Task](#task)
-    * [Requirements](#task-requirements)
     * [Supported Features](#supported-features)
   * [Repository Structure](#repository-structure)
   * [Design](#design)
