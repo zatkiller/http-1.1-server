@@ -15,18 +15,9 @@
       * [Curl command](#curl-commands)
       * [Benmarking performance](#benchmarking)
 
-## Task
-Implement a basic HTTP server that supports HTTP/1.1 in C++.
-
-### Task Requirements
-- Run on Linux
-- Do not use any third party networking library, i.e. use only Linux system API.
-- Handle at least 10,000 concurrent connections.
-- Serve at least 100,000 requests per second on a modern personal computer.
-- Serve a simple one or two pages website for demonstration.
-- You may want to skip some trivial features like Multipart data if time is not enough, but you need to state clearly what features are supported.
-
 ### Supported Features
+- Handles at least 10,000 concurrent connections.
+- Serve at least 100,000 requests per second on a modern personal computer.
 - HTTP/1.1 GET requests to the following endpoints
   - `/` - returns a dummy web page
   - `/hello` - returns hello world as response body
