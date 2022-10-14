@@ -3,8 +3,7 @@
 ## Contents
 
 * [HTTP 1.1 server](#http-11-server)
-  * [Task](#task)
-    * [Supported Features](#supported-features)
+  * [Supported Features](#supported-features)
   * [Repository Structure](#repository-structure)
   * [Design](#design)
   * [Setup](#setup)
